@@ -1,5 +1,8 @@
 package hello.core.member;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{ //클라이언트 코드
 
     //private final MemberRepository memberRepository=new MemoryMemberRepository(); //문제점: MemberServiceImpl 은 추상화에도 의존하고 구체화에도 의존한다 -> DIP 위반
@@ -18,5 +21,10 @@ public class MemberServiceImpl implements MemberService{ //클라이언트 코�
     @Override
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }

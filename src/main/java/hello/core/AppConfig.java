@@ -20,15 +20,18 @@ public class AppConfig { //기존 DIP, OCP 원칙 위배 문제를 해결하기 
 
     @Bean // 각 메소드에 Bean -> 스프링 컨테이너에 등록됨
     public MemberService memberService() { //역할
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository()); //구현
         // 이렇게 반환된 객체가 스프링 컨테이너에 등록됨. -> 이렇게 등록된 객체를 스프링 빈이라고 한다
     }
     @Bean
     public MemberRepository memberRepository() {
-        return new MemoryMemberRepository(); //생성자 주입. 생성자를 통해서 들어간다. 여기서 구현을 정해주는 것. 의존 관계 주입. 리팩터링.
+        System.out.println("call AppConfig.memberRepository");
+        return new MemoryMemberRepository(); //생성자를 호출하여 생성자 주입. 생성자를 통해서 들어간다. 여기서 구현을 정해주는 것. 의존 관계 주입. 리팩터링.
     }
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy()); //의존관계 주입
     }
     @Bean
