@@ -6,7 +6,10 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService{
 
     //private final MemberRepository memberRepository=new MemoryMemberRepository();
@@ -21,6 +24,7 @@ public class OrderServiceImpl implements OrderService{
     private  final MemberRepository memberRepository; //인터페이스에만 의존
     private final DiscountPolicy discountPolicy;
 
+    @Autowired //생성자에 붙이는 Annotation. 자동 의존 관계 주입.
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
